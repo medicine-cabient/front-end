@@ -1,0 +1,24 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+dash = "==1.9.1"
+dash-bootstrap-components = "*"
+gunicorn = "*"
+plotly = "*"
+pandas = "*"
+flake8 = "*"
+flask = "*"
+flask-login = "*"
+flask-sqlalchemy = "*"
+werkzeug = "*"
+python-dotenv = "*"
+jinja2 = "*"
+numpy = "==1.19.3"
+
+[requires]
+python_version = "3"

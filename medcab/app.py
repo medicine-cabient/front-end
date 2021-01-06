@@ -30,6 +30,11 @@ def create_app():
     @login_required
     def home():
         return render_template('home.html')
+    def recomendations():
+        search = Mjrecomendationform(request.form)
+        if request.method == 'POST':
+            return search_results(search)
+        return render_template('home.html', form=search)
 
     @app.route('/login', methods = ['POST', 'GET'])
     def login():
@@ -73,11 +78,7 @@ def create_app():
     @app.route('/recomendations', methods=['GET', 'POST'])
     # def recomendations():
     #     return 'todo'
-    def recomendations():
-        search = Mjrecomendationform(request.form)
-        if request.method == 'POST':
-            return search_results(search)
-        return render_template('recomendations.html', form=search)
+
     
     @app.route('/results')
     def search_results(search):

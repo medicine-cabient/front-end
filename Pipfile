@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-dash = "*"
+dash = "==1.9.1"
 dash-bootstrap-components = "*"
 gunicorn = "*"
 plotly = "*"
@@ -18,7 +18,7 @@ flask-sqlalchemy = "*"
 werkzeug = "*"
 python-dotenv = "*"
 jinja2 = "*"
-numpy = "*"
+numpy = "==1.19.3"
 
 [requires]
-python_version = "3.8"
+python_version = "3"

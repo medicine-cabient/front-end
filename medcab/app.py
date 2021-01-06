@@ -3,14 +3,18 @@ from flask import Flask, request, render_template, redirect, g
 from flask_login import login_required, current_user, login_user, logout_user
 from .loginform import UserModel, db, login
 from .forms import Mjrecomendationform
+from flask_bootstrap import Bootstrap
 
 def create_app():
      # constructs core flask app, 
     app = Flask(__name__)
+    Bootstrap(app)
+    
     app.config["SECRET_KEY"] = getenv('SECRET_KEY')
     app.config['SQLALCHEMY_DATABASE_URI'] = getenv('SQLITE_DATABASE')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
+
     from .loginform import db, login
     db.init_app(app)
     login.init_app(app)

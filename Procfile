@@ -1,1 +1,1 @@
-web: gunicorn spot:app
+web: gunicorn medcab:app

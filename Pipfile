@@ -19,6 +19,9 @@ werkzeug = "*"
 python-dotenv = "*"
 jinja2 = "*"
 numpy = "==1.19.3"
+pipfile = "*"
+flask-wtf = "*"
+flask-bootstrap = "*"
 
 [requires]
 python_version = "3"

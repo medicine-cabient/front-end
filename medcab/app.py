@@ -26,7 +26,7 @@ def create_app():
         db.create_all()
     
     
-    @app.route('/')
+    @app.route('/', methods=['POST', "GET"])
     @login_required
     def home():
         return render_template('home.html')

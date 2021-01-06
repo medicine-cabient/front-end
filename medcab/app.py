@@ -77,7 +77,7 @@ def create_app():
         search = Mjrecomendationform(request.form)
         if request.method == 'POST':
             return search_results(search)
-        return render_template('home.html', form=search)
+        return render_template('recomendations.html', form=search)
     
     @app.route('/results')
     def search_results(search):

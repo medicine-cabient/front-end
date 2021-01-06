@@ -7,7 +7,7 @@ from flask_bootstrap import Bootstrap
 
 def create_app():
      # constructs core flask app, 
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder='templates', static_folder='static')
     Bootstrap(app)
     
     app.config["SECRET_KEY"] = getenv('SECRET_KEY')

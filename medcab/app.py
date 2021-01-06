@@ -4,6 +4,7 @@ from flask_login import login_required, current_user, login_user, logout_user
 from .loginform import UserModel, db, login
 from .forms import Mjrecomendationform
 from flask_bootstrap import Bootstrap
+from .predict import pred
 
 def create_app():
      # constructs core flask app, 
@@ -76,7 +77,9 @@ def create_app():
     def recomendations():
         search = Mjrecomendationform(request.form)
         if request.method == 'POST':
-            return search_results(search)
+            # likely error
+            preds, pred_dict = pred(request.form['submission'])
+            return preds
         return render_template('recomendations.html', form=search)
     
     @app.route('/results')

@@ -22,6 +22,8 @@ numpy = "==1.19.3"
 pipfile = "*"
 flask-wtf = "*"
 flask-bootstrap = "*"
+spacy = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3"

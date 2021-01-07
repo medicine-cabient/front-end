@@ -4,7 +4,7 @@ from flask_login import login_required, current_user, login_user, logout_user
 from .loginform import UserModel, db, login
 from .forms import Mjrecomendationform
 from flask_bootstrap import Bootstrap
-from .predict import pred
+from .predict import pred_function
 
 def create_app():
      # constructs core flask app, 
@@ -71,31 +71,31 @@ def create_app():
         logout_user()
         return redirect('/')
 
-    @app.route('/recomendations', methods=['GET', 'POST'])
+    @app.route('/recomendations', methods=['POST', 'GET'])
     # def recomendations():
     #     return 'todo'
     def recomendations():
         search = Mjrecomendationform(request.form)
         if request.method == 'POST':
             # likely error
-            preds, pred_dict = pred(str(search))
-            return preds
+            preds, pred_dict = pred_function(str(search))
+            return pred_dict
         return render_template('recomendations.html', form=search)
     
-    @app.route('/results')
-    def search_results(search):
-        results = []
-        search_string = search.data['search']
+    # @app.route('/results')
+    # def search_results(search):
+    #     results = []
+    #     search_string = search.data['search']
 
-        if search.data['search'] == '':
-            qry = db_session.query(marijuana)
-            results = qry.all()
+    #     if search.data['search'] == '':
+    #         qry = db_session.query(marijuana)
+    #         results = qry.all()
 
-        if not results:
-            flash('no results found!')
-            return redirect('/')
-        else:
-            return render_template('results.html', results=results)
+    #     if not results:
+    #         flash('no results found!')
+    #         return redirect('/')
+    #     else:
+    #         return render_template('results.html', results=results)
 
         
     return app

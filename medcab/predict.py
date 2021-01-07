@@ -8,8 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from spacy.tokenizer import Tokenizer
 import re
 import spacy.cli
-
-
+from collections import OrderedDict
 
 
 
@@ -58,7 +57,7 @@ tokenizer = Tokenizer(nlp.vocab)
 
 # def remove_data(text):
 
-#     # remove non-alphanumeric
+# #     # remove non-alphanumeric
 #     nonalpha = re.sub(r"\b[a-zA-Z]\b", "", text)
 #     #nonalpha = re.sub('[^1-9]', ' ', text)
 #     # make all text lowercase
@@ -213,13 +212,15 @@ tokenizer = Tokenizer(nlp.vocab)
 # tran = tfidf.transform(review)
 # model.kneighbors(tran.todense())[1]
 
-def pred(x):
+test_df = pd.read_csv("test_df.csv")
+
+def pred_function(x):
     """Make prediction and return nested dictionary
     
        x = string
     """
     # Load mode file and perform prediction
-    model = pickle.load(open("mvp.product", "rb"))
+    model = pickle.load(open("mvp_product", "rb"))
     tfidf = pickle.load(open("vectorizer.pickle", "rb"))
     x = [x]
     trans = tfidf.transform(x)
@@ -243,7 +244,7 @@ def pred(x):
         print("\n____________________________________")
 
                 # add new dictionary to pred_dict containing predictions
-        preds_dict ={(1+len(pred_dict)): {"strain": test_df["Strain"][x],
+        preds_dict = OrderedDict({(1+len(pred_dict)): {"strain": test_df["Strain"][x],
                                           "dosage size": test_df["Dosage Size"][x],
                                           "rating category": test_df["Rating Category"][x], 
                                           "rating": test_df["Rating"][x],
@@ -251,7 +252,7 @@ def pred(x):
                                           "description": test_df["Description"][x],
                                           "flavor": test_df["Flavor"][x],
                                           "effects": test_df["Effects"][x],
-                                          "ailments": test_df["Ailments"][x]}}
+                                          "ailments": test_df["Ailments"][x]}})
         pred_dict.update(preds_dict)
     
     return pred, pred_dict

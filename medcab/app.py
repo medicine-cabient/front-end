@@ -78,7 +78,7 @@ def create_app():
         search = Mjrecomendationform(request.form)
         if request.method == 'POST':
             # likely error
-            preds, pred_dict = pred(request.form['submission'])
+            preds, pred_dict = pred(str(search))
             return preds
         return render_template('recomendations.html', form=search)
     

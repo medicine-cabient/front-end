@@ -1,10 +1,13 @@
-{% extends 'recomendations.html' %}
+{% extends 'home.html' %}
 
-{% block conntent %}
-    <div class="top-pad">
-        <h1>>{{ marijuana['name'] }}
-         <small> {{ marijuana['description'] }}</small>
-        </h1>
-        <h3> {{ marijuana['flavors'] }}</h3>
-    </div>
+
+{% block content %}
+ <h2> Get Marijuana Recomendations </h2>
+ <form action="" method="post">
+     <p>
+         {{form.getrecomendations.label}}<br>
+         {{form.getrecomendations(size=30)}}
+     </p>
+     <p>{{form.submit()}}</p>
+ </form>
 {% endblock %}

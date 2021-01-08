@@ -1,5 +1,5 @@
 from os import getenv
-from flask import Flask, request, render_template, redirect, g 
+from flask import Flask, request, render_template, redirect, jsonify
 from flask_login import login_required, current_user, login_user, logout_user
 from .loginform import UserModel, db, login
 from .forms import Mjrecomendationform
@@ -71,17 +71,18 @@ def create_app():
         logout_user()
         return redirect('/')
 
-    @app.route('/recomendations', methods=['POST', 'GET'])
+    @app.route('/recomendations', methods=['POST',"GET"])
     # def recomendations():
     #     return 'todo'
     def recomendations():
-        search = Mjrecomendationform(request.form)
         if request.method == 'POST':
-            # likely error
-            preds, pred_dict = pred_function(str(search))
-            return pred_dict
-        return render_template('recomendations.html', form=search)
+            
     
+            preds = pred_function("back ache and sleepy")
+            return jsonify(preds)
+        return render_template('recomendations.html')
+    
+
     # @app.route('/results')
     # def search_results(search):
     #     results = []

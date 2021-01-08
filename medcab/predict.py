@@ -222,29 +222,31 @@ def pred_function(x):
     # Load mode file and perform prediction
     model = pickle.load(open("mvp_product", "rb"))
     tfidf = pickle.load(open("vectorizer.pickle", "rb"))
-    x = [x]
-    trans = tfidf.transform(x)
+    global review
+    review = [x]
+    trans = tfidf.transform(review)
+    global pred
     pred = model.kneighbors(trans.todense())[1][0]
     
     #create empty dictionary
     pred_dict = {}
     
     #summary statistics of 5 closest neighbors
-    for x in pred:
-        print("\n                 --DISCLAIMER! Dosage Size recommendations will vary between users.--")
-        print("\nStrain: ", test_df["Strain"][x])
-        print("Dosage Size: ", test_df["Dosage Size"][x])
-        print("\nRating Category: ", test_df["Rating Category"][x])
-        print("Rating: ", test_df["Rating"][x])
-        print("\nType: ", test_df["Type"][x])
-        print("\nDescription: ", test_df["Description"][x])
-        print("\nFlavor: ", test_df["Flavor"][x])
-        print("\nEffects: ", test_df["Effects"][x])
-        print("\nAilments: ", test_df["Ailments"][x])
-        print("\n____________________________________")
+    for x in pred[:5]:
+        top_5_recommendations = ["\n                 --DISCLAIMER! Dosage Size recommendations will vary between users.--",
+            "\nStrain: ", test_df["Strain"][x],
+            "Dosage Size: ", test_df["Dosage Size"][x],
+            "\nRating Category: ", test_df["Rating Category"][x],
+            "\nRating: ", test_df["Rating"][x],
+            "\nType: ", test_df["Type"][x],
+            "\nDescription: ", test_df["Description"][x],
+            "\nFlavor: ", test_df["Flavor"][x],
+            "\nEffects: ", test_df["Effects"][x],
+            "\nAilments: ", test_df["Ailments"][x],
+            "\n____________________________________"]
 
                 # add new dictionary to pred_dict containing predictions
-        preds_dict = OrderedDict({(1+len(pred_dict)): {"strain": test_df["Strain"][x],
+        preds_dict = {"strain": test_df["Strain"][x],
                                           "dosage size": test_df["Dosage Size"][x],
                                           "rating category": test_df["Rating Category"][x], 
                                           "rating": test_df["Rating"][x],
@@ -252,8 +254,38 @@ def pred_function(x):
                                           "description": test_df["Description"][x],
                                           "flavor": test_df["Flavor"][x],
                                           "effects": test_df["Effects"][x],
-                                          "ailments": test_df["Ailments"][x]}})
+                                          "ailments": test_df["Ailments"][x]}
         pred_dict.update(preds_dict)
     
-    return pred, pred_dict
+    return pred_dict
 
+# def print_out(pred):
+#     pred_dict = {}
+    
+#     #summary statistics of 5 closest neighbors
+#     for x in pred[:5]:
+#         return ("\n                 --DISCLAIMER! Dosage Size recommendations will vary between users.--",
+#         "\nStrain: ", test_df["Strain"][x],
+#         "Dosage Size: ", test_df["Dosage Size"][x],
+#         "\nRating Category: ", test_df["Rating Category"][x],
+#         "\nRating: ", test_df["Rating"][x],
+#         "\nType: ", test_df["Type"][x],
+#         "\nDescription: ", test_df["Description"][x],
+#         "\nFlavor: ", test_df["Flavor"][x],
+#         "\nEffects: ", test_df["Effects"][x],
+#         "\nAilments: ", test_df["Ailments"][x],
+#         "\n____________________________________")
+
+    #             # add new dictionary to pred_dict containing predictions
+    #     preds_dict = OrderedDict({(1+len(pred_dict)): {"strain": test_df["Strain"][x],
+    #                                       "dosage size": test_df["Dosage Size"][x],
+    #                                       "rating category": test_df["Rating Category"][x], 
+    #                                       "rating": test_df["Rating"][x],
+    #                                       "type": test_df["Type"][x],
+    #                                       "description": test_df["Description"][x],
+    #                                       "flavor": test_df["Flavor"][x],
+    #                                       "effects": test_df["Effects"][x],
+    #                                       "ailments": test_df["Ailments"][x]}})
+    #     pred_dict.update(preds_dict)
+
+    # return pred_dict

@@ -78,7 +78,7 @@ def create_app():
         if request.method == 'POST':
             
     
-            preds = pred_function("back ache and sleepy")
+            preds = pred_function(request.form['input'])
             return jsonify(preds)
         return render_template('recomendations.html')
     

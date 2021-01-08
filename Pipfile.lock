@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d89330ca44d81866f8ce75fcc38c0eb88f3487820bb7550e99eb63ada16684b0"
+            "sha256": "a7d81570e6fa5592d6846bdee2a29f5e29af0186bdabb52a0aaeb72adb3be478"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -101,6 +101,14 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
             "version": "==7.1.2"
+        },
+        "compress-pickle": {
+            "hashes": [
+                "sha256:44fd1aa3420e0a6de75e61c7bd72eddc159e0a2a7dc68a385be03f40d7f27509",
+                "sha256:b6672c99c5bcdc5e587fa4a4f7dbd0e42e2d04638fc8e69298800b9a837f88a1"
+            ],
+            "index": "pypi",
+            "version": "==1.2.0"
         },
         "cymem": {
             "hashes": [
@@ -265,7 +273,7 @@
                 "sha256:75ead23f13484a2a414874779d69ade40d4fa1abe62b222a23cd50d4bc822f6f",
                 "sha256:7ad866067ac1fdec27d51c8678ea760601b70e32ff1881d4dc8e1171f2b64b24"
             ],
-            "markers": "python_version >= '3.6'",
+            "index": "pypi",
             "version": "==1.0.0"
         },
         "markupsafe": {

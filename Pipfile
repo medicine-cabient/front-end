@@ -24,6 +24,8 @@ flask-wtf = "*"
 flask-bootstrap = "*"
 spacy = "*"
 sklearn = "*"
+compress-pickle = "*"
+joblib = "*"
 
 [requires]
 python_version = "3"
